@@ -2,7 +2,6 @@ package com.example.agenda;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,25 +39,15 @@ public class ContacteAdapter extends ArrayAdapter<Contacte> {
         ImageButton btnTrucar = view.findViewById(R.id.btnItemTrucar);
         ImageButton btnEmail = view.findViewById(R.id.btnItemEmail);
 
-        tvNom.setText((contacte.getNom() + " " + contacte.getCognom()).trim());
+        tvNom.setText(contacte.getNomComplet());
         tvTelefon.setText(contacte.getTelefon());
         tvEmail.setText(contacte.getMail());
 
-        btnTrucar.setOnClickListener(v -> {
-            String telefon = contacte.getTelefon();
-            if (telefon != null && !telefon.isEmpty()) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + telefon));
-                context.startActivity(intent);
-            }
-        });
+        btnTrucar.setOnClickListener(v ->
+                Contacte.launchUriAction(context, Intent.ACTION_DIAL, "tel:", contacte.getTelefon()));
 
-        btnEmail.setOnClickListener(v -> {
-            String mail = contacte.getMail();
-            if (mail != null && !mail.isEmpty()) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + mail));
-                context.startActivity(intent);
-            }
-        });
+        btnEmail.setOnClickListener(v ->
+                Contacte.launchUriAction(context, Intent.ACTION_SENDTO, "mailto:", contacte.getMail()));
 
         return view;
     }

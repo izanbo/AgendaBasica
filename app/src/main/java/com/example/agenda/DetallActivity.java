@@ -2,7 +2,6 @@ package com.example.agenda;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,19 +53,11 @@ public class DetallActivity extends AppCompatActivity {
             btnEsborrar.setVisibility(View.GONE);
         }
 
-        btnTrucar.setOnClickListener(v -> {
-            String telefon = etTelefon.getText().toString().trim();
-            if (!telefon.isEmpty()) {
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + telefon)));
-            }
-        });
+        btnTrucar.setOnClickListener(v ->
+                Contacte.launchUriAction(this, Intent.ACTION_DIAL, "tel:", etTelefon.getText().toString()));
 
-        btnEmail.setOnClickListener(v -> {
-            String email = etEmail.getText().toString().trim();
-            if (!email.isEmpty()) {
-                startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email)));
-            }
-        });
+        btnEmail.setOnClickListener(v ->
+                Contacte.launchUriAction(this, Intent.ACTION_SENDTO, "mailto:", etEmail.getText().toString()));
 
         btnAcceptar.setOnClickListener(v -> {
             String nom = etNom.getText().toString().trim();

@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
                     int posicio = data.getIntExtra("POSICIO", -1);
                     boolean esborrar = data.getBooleanExtra("ESBORRAR", false);
 
-                    if (esborrar && posicio != -1) {
+                    if (esborrar && posicio >= 0 && posicio < llistaContactes.size()) {
                         llistaContactes.remove(posicio);
+                        ContacteStorage.saveContactes(this, llistaContactes);
                         adapter.notifyDataSetChanged();
                         Toast.makeText(this, getString(R.string.msg_deleted), Toast.LENGTH_SHORT).show();
                     } else {
@@ -40,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
                                 contacte.setTelefon("+34 " + contacte.getTelefon());
                             }
 
-                            if (posicio == -1) {
+                            if (posicio < 0 || posicio >= llistaContactes.size()) {
                                 llistaContactes.add(contacte);
                             } else {
                                 llistaContactes.set(posicio, contacte);
                             }
+                            ContacteStorage.saveContactes(this, llistaContactes);
                             adapter.notifyDataSetChanged();
                             Toast.makeText(this, getString(R.string.msg_saved), Toast.LENGTH_SHORT).show();
                         }
@@ -58,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        llistaContactes.add(new Contacte("Pol", "Giménez", "Carrer Major 12", "+34 653151285", "e.pgimenezm@ies-sabadell.cat", "24/11/2006"));
-        llistaContactes.add(new Contacte("Izan", "Boyero", "Avinguda Roma 45", "+34 644305430", "izanbo@ies-sabadell.cat", "02/05/2005"));
-        llistaContactes.add(new Contacte("Adam", "Partida", "Carrer Menor 13", "+34 622133180", "apartidam@ies-sabadell.cat", "19/08/2000"));
-        llistaContactes.add(new Contacte("Victoria", "Alcázar", "Avinguda Paris 25", "+34 653124380", "e.valcazarf@ies-sabadell.cat", "09/07/2007"));
-        llistaContactes.add(new Contacte("Didac", "Avellán", "Carrer Mitja 14", "+34 611413670", "davellana@ies-sabadell.cat", "26/09/2007"));
-        llistaContactes.add(new Contacte("Adrian", "Herrera", "Avinguda Cadiz 15", "+34 647883871", "aherrerag@ies-sabadell.cat", "14/07/2001"));
+        if (ContacteStorage.hasSavedContactes(this)) {
+            llistaContactes.addAll(ContacteStorage.loadContactes(this));
+        } else {
+            carregarContactesInicials();
+            ContacteStorage.saveContactes(this, llistaContactes);
+        }
 
         lvContactes = findViewById(R.id.lvContactes);
         Button btnNouContacte = findViewById(R.id.btnNouContacte);
@@ -82,5 +84,14 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("POSICIO", position);
             detallLauncher.launch(intent);
         });
+    }
+
+    private void carregarContactesInicials() {
+        llistaContactes.add(new Contacte("Pol", "Giménez", "Carrer Major 12", "+34 653151285", "e.pgimenezm@ies-sabadell.cat", "24/11/2006"));
+        llistaContactes.add(new Contacte("Izan", "Boyero", "Avinguda Roma 45", "+34 644305430", "izanbo@ies-sabadell.cat", "02/05/2005"));
+        llistaContactes.add(new Contacte("Adam", "Partida", "Carrer Menor 13", "+34 622133180", "apartidam@ies-sabadell.cat", "19/08/2000"));
+        llistaContactes.add(new Contacte("Victoria", "Alcázar", "Avinguda Paris 25", "+34 653124380", "e.valcazarf@ies-sabadell.cat", "09/07/2007"));
+        llistaContactes.add(new Contacte("Didac", "Avellán", "Carrer Mitja 14", "+34 611413670", "davellana@ies-sabadell.cat", "26/09/2007"));
+        llistaContactes.add(new Contacte("Adrian", "Herrera", "Avinguda Cadiz 15", "+34 647883871", "aherrerag@ies-sabadell.cat", "14/07/2001"));
     }
 }

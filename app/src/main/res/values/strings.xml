@@ -13,6 +13,7 @@
     <string name="msg_required">Nombre y teléfono son obligatorios</string>
     <string name="msg_deleted">Contacto eliminado</string>
     <string name="msg_saved">Contacto guardado</string>
+    <string name="msg_no_app">No hay ninguna aplicación disponible para esta acción</string>
     <string name="title_new">Nuevo Contacto</string>
     <string name="title_edit">Detalle / Editar Contacto</string>
     <string name="menu_settings">Configuración</string>

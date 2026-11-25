@@ -1,7 +1,11 @@
 package com.example.agenda;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -47,6 +51,33 @@ public class Contacte implements Serializable {
         @SuppressWarnings("deprecation")
         Object extra = intent.getSerializableExtra(key);
         return extra instanceof Contacte ? (Contacte) extra : null;
+    }
+
+    /**
+     * Launches an external URI action safely if {@code value} is non-empty.
+     */
+    public static void launchUriAction(Context context, String action, String schemePrefix, @Nullable String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return;
+        }
+        Intent intent = new Intent(action, Uri.parse(schemePrefix + value.trim()));
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(context, R.string.msg_no_app, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public String getNomComplet() {
+        String safeNom = nom != null ? nom.trim() : "";
+        String safeCognom = cognom != null ? cognom.trim() : "";
+        if (safeNom.isEmpty()) {
+            return safeCognom;
+        }
+        if (safeCognom.isEmpty()) {
+            return safeNom;
+        }
+        return safeNom + " " + safeCognom;
     }
 
     public String getNom() {

@@ -13,6 +13,7 @@
     <string name="msg_required">El nom i el telèfon són obligatoris</string>
     <string name="msg_deleted">Contacte esborrat</string>
     <string name="msg_saved">Contacte desat</string>
+    <string name="msg_no_app">No hi ha cap aplicació disponible per a aquesta acció</string>
     <string name="title_new">Nou Contacte</string>
     <string name="title_edit">Detall / Editar Contacte</string>
     <string name="menu_settings">Configuració</string>
