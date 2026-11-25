@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Agenda Contactos</string>
+    <string name="btn_add">Añadir Contacto</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_surname">Apellido</string>
+    <string name="hint_address">Dirección</string>
+    <string name="hint_phone">Teléfono</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_birthdate">Fecha de nacimiento (DD/MM/AAAA)</string>
+    <string name="btn_accept">Aceptar</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_delete">Eliminar</string>
+    <string name="msg_required">Nombre y teléfono son obligatorios</string>
+    <string name="msg_deleted">Contacto eliminado</string>
+    <string name="msg_saved">Contacto guardado</string>
+    <string name="title_new">Nuevo Contacto</string>
+    <string name="title_edit">Detalle / Editar Contacto</string>
+    <string name="menu_settings">Configuración</string>
+</resources>

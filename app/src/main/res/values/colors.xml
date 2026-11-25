@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Dark base palette -->
+    <color name="dark_background">#0E0D15</color>
+    <color name="dark_header_top">#1E1633</color>
+    <color name="dark_surface">#181624</color>
+    <color name="dark_surface_elevated">#231F36</color>
+    <color name="dark_input_bg">#12101C</color>
+    <color name="dark_border">#2E2947</color>
+
+    <!-- Purple accents -->
+    <color name="purple_200">#CE93D8</color>
+    <color name="purple_400">#9D6BFF</color>
+    <color name="purple_500">#7C4DFF</color>
+    <color name="purple_700">#512DA8</color>
+    <color name="purple_glow">#2A1F47</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#F5F3FF</color>
+    <color name="text_secondary">#B3ACC8</color>
+
+    <!-- Status / utility colors -->
+    <color name="green_500">#4CAF50</color>
+    <color name="red_500">#EF5350</color>
+    <color name="red_soft">#FF8A80</color>
+    <color name="dark_red_surface">#29151C</color>
+    <color name="gray_500">#9E9E9E</color>
+    <color name="gray_200">#2B2740</color>
+</resources>
